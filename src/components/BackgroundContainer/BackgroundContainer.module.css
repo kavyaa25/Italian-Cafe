@@ -1,0 +1,129 @@
+.backgroundContainer {
+  position: relative;
+  min-height: 100vh;
+  background: linear-gradient(
+    135deg,
+    var(--bg-primary) 0%,
+    var(--bg-secondary) 25%,
+    var(--bg-tertiary) 50%,
+    var(--bg-secondary) 75%,
+    var(--bg-primary) 100%
+  );
+  background-size: 400% 400%;
+  animation: backgroundShift 20s ease-in-out infinite;
+  transition: background 0.3s ease;
+}
+
+.backgroundPattern {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(circle at 15% 15%, rgba(201, 169, 110, 0.03) 0%, transparent 50%),
+    radial-gradient(circle at 85% 85%, rgba(201, 169, 110, 0.03) 0%, transparent 50%),
+    radial-gradient(circle at 50% 50%, rgba(201, 169, 110, 0.02) 0%, transparent 70%);
+  background-size: 800px 800px, 600px 600px, 1000px 1000px;
+  animation: patternFloat 30s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.backgroundOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    linear-gradient(45deg, transparent 48%, rgba(201, 169, 110, 0.01) 49%, rgba(201, 169, 110, 0.01) 51%, transparent 52%),
+    linear-gradient(-45deg, transparent 48%, rgba(201, 169, 110, 0.01) 49%, rgba(201, 169, 110, 0.01) 51%, transparent 52%);
+  background-size: 100px 100px;
+  animation: overlayMove 25s linear infinite;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.contentWrapper {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+}
+
+@keyframes backgroundShift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes patternFloat {
+  0%, 100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  33% {
+    transform: translate(30px, -30px) rotate(120deg);
+  }
+  66% {
+    transform: translate(-20px, 20px) rotate(240deg);
+  }
+}
+
+@keyframes overlayMove {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(100px, 100px);
+  }
+}
+
+/* Performance optimizations */
+.backgroundContainer {
+  will-change: background-position;
+}
+
+.backgroundPattern,
+.backgroundOverlay {
+  will-change: transform;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .backgroundContainer {
+    animation: none;
+    background: var(--warm-white);
+  }
+  
+  .backgroundPattern,
+  .backgroundOverlay {
+    animation: none;
+    opacity: 0.3;
+  }
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  .backgroundPattern {
+    background-size: 400px 400px, 300px 300px, 500px 500px;
+  }
+  
+  .backgroundOverlay {
+    background-size: 50px 50px;
+  }
+  
+  .backgroundContainer {
+    animation-duration: 30s;
+  }
+  
+  .backgroundPattern {
+    animation-duration: 40s;
+  }
+  
+  .backgroundOverlay {
+    animation-duration: 35s;
+  }
+}

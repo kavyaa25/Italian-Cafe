@@ -1,0 +1,35 @@
+/* App-specific styles */
+.App {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+}
+
+/* Section spacing */
+section {
+  position: relative;
+}
+
+/* Background patterns and textures */
+.bg-pattern {
+  background-image: 
+    radial-gradient(circle at 25% 25%, rgba(212, 175, 55, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 75% 75%, rgba(212, 175, 55, 0.1) 0%, transparent 50%);
+}
+
+/* Italian color scheme */
+:root {
+  --primary-gold: #d4af37;
+  --dark-gold: #b8941f;
+  --light-gold: #f4e4a6;
+  --warm-white: #fefefe;
+  --soft-gray: #f8f8f8;
+  --text-dark: #2c2c2c;
+  --text-light: #666;
+  --accent-red: #c41e3a;
+  --accent-green: #228b22;
+}
